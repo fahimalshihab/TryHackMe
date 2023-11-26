@@ -1,0 +1,12 @@
+hostname:target.com | to find all asset available for target.com on shodan
+http.title:"title" | to find server/host with similer title
+http.html:"/file" | to find server/host with similar path 
+html:"context" |  to find server/host with similar string
+server: "apache 2.2.3" | to find server/host with same server
+port:80 | to find server/host with same port
+os:"windows" | to find server/host with same os
+asn:AS3214 | to find host/server with matched asn
+http.status:200 | to find server/host with 200 http response code
+http.favicon.hash:"hash" | to find server/host with same favico hash
+ssl.cert.subject.cn:"uber.com" | find all server/host with same common name
+product: "service_name" | to find all the server/host with same service
