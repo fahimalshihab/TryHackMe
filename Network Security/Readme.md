@@ -64,3 +64,25 @@ We use this search query
 ```asn:AS14061 product:MySQL```
 #### vuln
 The "vuln" filter is only available to Academic users or Small Business API subscription and higher.
+#### Examples
+```
+asn:AS15169 product:"MySQL"
+asn:AS15169 product:"nginx"
+asn:AS15169 country:"US"
+asn:AS15169 country:"US" city:"Los Angeles"
+```
+#### Shodan Monitor
+Shodan Monitor is an application for monitoring your devices in your own network. In their words:
+Keep track of the devices that you have exposed to the Internet. Setup notifications, launch scans and gain complete visibility into what you have connected.
+https://monitor.shodan.io/dashboard
+#### Shodan Dorking
+Shodan has some lovely webpages with Dorks that allow us to find things. Their search example webpages feature some.
+Some fun ones include:
+- Which uses optical character recognition and remote desktop to find machines compromised by ransomware on the internet. 
+```
+has_screenshot:true encrypted attention
+```
+```
+screenshot.label:ics
+```
+more here 
