@@ -27,6 +27,40 @@ dig tryhackme.com MX
 ### For sub domains
 
 [DNSDumpster](https://dnsdumpster.com/)
-### Shodan
+## Shodan
 [Shodan.io](https://www.shodan.io/)
 - Shodan.io collects information related to any device it can find connected online
+- Shodan.io is a search engine for the Internet of Things.
+#### Banners
+ Devices run services, and Shodan stores information about them. The information is stored in a banner. It’s the most fundamental part of Shodan.
+An example banner looks like:
+```
+{
+		"data": "Moxa Nport Device",
+		"Status": "Authentication disabled",
+		"Name": "NP5232I_4728",
+		"MAC": "00:90:e8:47:10:2d",
+		"ip_str": "46.252.132.235",
+		"port": 4800,
+		"org": "Starhub Mobile",
+		"location": {
+				"country_code": "SG"
+		}
+ }
+```
+### Filters
+#### Autonomous System Numbers(ASN)
+- (ASN) is a global identifier of a range of IP addresses.
+- We can put the IP address into an ASN lookup tool such as [ASNLOOKUP](https://asnlookup.com/) and it give us a asn number and On Shodan.io,we can search using the ASN filter. The filter is ASN:[number]
+- Knowing the ASN is helpful, because we can search Shodan for things such as coffee makers or vulnerable computers within our ASN, which we know (if we are a large company) is on our network.
+- example ```asn:AS14061```
+
+#### MYSQL
+If we look at the search, we can see it is another filter product:MySQL
+Knowing this, we can actually combine 2 searches into 1.
+On TryHackMe’s ASN, let’s try to find some MYSQL servers.
+We use this search query
+
+```asn:AS14061 product:MySQL```
+#### vuln
+The "vuln" filter is only available to Academic users or Small Business API subscription and higher.
