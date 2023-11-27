@@ -153,3 +153,14 @@ traceroute to tryhackme.com (104.22.55.228), 30 hops max, 60 byte packets
 ```
 telnet 104.22.54.228 80
 ```
+### Netcat
+Netcat or simply nc has different applications that can be of great value to a pentester. Netcat supports both TCP and UDP protocols. It can function as a client that connects to a listening port; alternatively, it can act as a server that listens on a port of your choice. Hence, it is a convenient tool that you can use as a simple client or server over TCP or UDP.
+
+```
+netcat as server :$ nc -lvnp 1337
+```
+```
+netcat as client :$ nc 192.168.0.176 1337
+```
+
+
