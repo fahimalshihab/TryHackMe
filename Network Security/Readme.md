@@ -146,3 +146,10 @@ traceroute to tryhackme.com (104.22.55.228), 30 hops max, 60 byte packets
 11  104.22.55.228 (104.22.55.228)  9.336 ms  9.297 ms  8.571 ms
 
 ```
+### Telnet
+- Telnet stands for "Telecommunication Network." It is a network protocol that allows a user to interact with another computer or device over a network, typically the internet.
+- Telnet provides a command-line interface to communicate with a remote device. It was commonly used for remote access and management of devices before more secure protocols like SSH (Secure Shell) became prevalent.
+- Telnet typically uses port 23 for communication.
+```
+telnet 104.22.54.228 80
+```
