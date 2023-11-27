@@ -86,3 +86,63 @@ has_screenshot:true encrypted attention
 screenshot.label:ics
 ```
 more here [shodan-dorks.txt](shodan-dorks.txt)
+
+### Ping
+ - The primary purpose of ping is to check whether you can reach the remote system and that the remote system can reach you back.
+ - In simple terms, the ping command sends a packet to a remote system, and the remote system replies. This way, you can conclude that the remote system is online and that the network is working between the two systems.
+ - If you prefer a pickier definition, the ping is a command that sends an ICMP Echo packet to a remote system. If the remote system is online, and the ping packet was correctly routed and not blocked by any firewall, the remote system should send back an ICMP Echo Reply.
+```
+ping -c 5 104.22.54.228
+```
+example :
+```
+└─$ ping -c 5 104.22.54.228       
+PING 104.22.54.228 (104.22.54.228) 56(84) bytes of data.
+64 bytes from 104.22.54.228: icmp_seq=1 ttl=55 time=9.65 ms
+64 bytes from 104.22.54.228: icmp_seq=2 ttl=55 time=118 ms
+64 bytes from 104.22.54.228: icmp_seq=3 ttl=55 time=27.7 ms
+64 bytes from 104.22.54.228: icmp_seq=4 ttl=55 time=11.5 ms
+64 bytes from 104.22.54.228: icmp_seq=5 ttl=55 time=26.6 ms
+
+--- 104.22.54.228 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4008ms
+rtt min/avg/max/mdev = 9.646/38.641/117.775/40.263 ms
+
+```
+### Traceroute
+- The purpose of a traceroute is to find the IP addresses of the routers or hops that a packet traverses as it goes from your system to a target host.
+- This command also reveals the number of routers between the two systems.
+- It is helpful as it indicates the number of hops (routers) between your system and the target host.
+- TTL is a value in a packet header that limits the lifespan of data in a computer or network.It prevents infinite loops or long-lived packets in a network.
+- Each router or hop along the route decrements the TTL value of the packet by 1.If the TTL reaches 0, the packet is discarded.
+- -m: Set the maximum TTL (time to live).
+```
+traceroute tryhackme.com
+traceroute -m 4  tryhackme.com
+```
+example :
+```
+┌──(iftx㉿kali)-[~]
+└─$ traceroute -m 4  tryhackme.com
+traceroute to tryhackme.com (104.22.54.228), 4 hops max, 60 byte packets
+ 1  192.168.0.1 (192.168.0.1)  1.312 ms  2.057 ms  2.011 ms
+ 2  10.10.10.10 (10.10.10.10)  2.675 ms  2.626 ms  2.863 ms
+ 3  10.110.241.57 (10.110.241.57)  4.480 ms  4.433 ms  4.392 ms
+ 4  10.110.240.102 (10.110.240.102)  4.891 ms  4.847 ms  4.804 ms
+                                                                                                                                                  
+┌──(iftx㉿kali)-[~]
+└─$ traceroute tryhackme.com     
+traceroute to tryhackme.com (104.22.55.228), 30 hops max, 60 byte packets
+ 1  192.168.0.1 (192.168.0.1)  2.069 ms  2.018 ms  1.998 ms
+ 2  10.10.10.10 (10.10.10.10)  3.230 ms  3.212 ms  3.192 ms
+ 3  10.110.241.57 (10.110.241.57)  3.813 ms  4.548 ms  4.529 ms
+ 4  10.110.240.102 (10.110.240.102)  4.998 ms  4.979 ms  4.958 ms
+ 5  172.17.17.21 (172.17.17.21)  8.285 ms  8.264 ms  8.244 ms
+ 6  172.16.250.198 (172.16.250.198)  8.225 ms  5.112 ms  5.035 ms
+ 7  172.16.249.114 (172.16.249.114)  7.126 ms  5.182 ms  5.103 ms
+ 8  10.8.0.213 (10.8.0.213)  3.788 ms  3.750 ms  3.713 ms
+ 9  172.21.66.37 (172.21.66.37)  9.021 ms  10.406 ms  10.369 ms
+10  103.21.42.18.earth.net.bd (103.21.42.18)  10.331 ms  10.290 ms  10.252 ms
+11  104.22.55.228 (104.22.55.228)  9.336 ms  9.297 ms  8.571 ms
+
+```
