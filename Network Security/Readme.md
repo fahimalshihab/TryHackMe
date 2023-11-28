@@ -211,4 +211,13 @@ Nmap scan report for ip-10-10-210-6.eu-west-1.compute.internal (10.10.210.6)
 Host is up.
 Nmap done: 256 IP addresses (4 hosts up) scanned in 3.12 seconds
 ```
+#### ICMP
+We can ping every IP address on a target network and see who would respond to our ping (ICMP Type 8/Echo) requests with a ping reply (ICMP Type 0). Simple, isn’t it? Although this would be the most straightforward approach, it is not always reliable. Many firewalls block ICMP echo; new versions of MS Windows are configured with a host firewall that blocks ICMP echo requests by default. Remember that an ARP query will precede the ICMP request if your target is on the same subnet.
+```
+sudo nmap -PE -sn 10.10.68.220/24
+sudo nmap -PP -sn 10.10.68.220/24
+sudo nmap -PM -sn 10.10.68.220/24
+```
+
+
 
