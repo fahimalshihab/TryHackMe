@@ -162,5 +162,53 @@ netcat as server :$ nc -lvnp 1337
 ```
 netcat as client :$ nc 192.168.0.176 1337
 ```
+### Nmap
+![745e0412b319d324352c7b29863b74f4 (3)](https://github.com/fahimalshihab/TryHackMe/assets/97816146/a1cec004-2c12-4fa4-94d4-f71b5d95ee00)
 
+``` nmap -sL -n 10.10.0-255.101-125 ```
+ to check the list of hosts that Nmap will scan
+
+#### ARP
+
+- An ARP (Address Resolution Protocol) request is a message sent out by a device on a local network to discover the MAC (Media Access Control) address associated with a particular IP (Internet Protocol) address. ARP is used in IPv4 networks to map an IP address to the corresponding hardware (MAC) address on a local network.
+
+- When a device wants to communicate with another device on the same local network, it needs to know the MAC address of the target device. It broadcasts an ARP request to all devices on the local network, asking for the MAC address associated with a specific IP address.
+
+- The ARP request includes the IP address for which the device is seeking the MAC address. The device with that specific IP address replies to the ARP request with its MAC address, allowing the requesting device to update its ARP cache. Once the ARP cache is updated, the devices can communicate with each other using their MAC addresses.
+
+- ARP is a critical protocol for the functioning of local networks, helping devices discover and communicate with each other at the link layer.
+```
+sudo arp-scan 10.10.210.6/24
+sudo nmap -PR -sn 10.10.210.6/24
+```
+Example :-
+```
+pentester@TryHackMe$ sudo arp-scan 10.10.210.6/24
+Interface: eth0, datalink type: EN10MB (Ethernet)
+WARNING: host part of 10.10.210.6/24 is non-zero
+Starting arp-scan 1.9 with 256 hosts (http://www.nta-monitor.com/tools/arp-scan/)
+10.10.210.75	02:83:75:3a:f2:89	(Unknown)
+10.10.210.100	02:63:d0:1b:2d:cd	(Unknown)
+10.10.210.165	02:59:79:4f:17:b7	(Unknown)
+
+4 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.9: 256 hosts scanned in 2.726 seconds (93.91 hosts/sec). 3 responded
+
+.............................................................................................
+pentester@TryHackMe$ sudo nmap -PR -sn 10.10.210.6/24
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2021-09-02 07:12 BST
+Nmap scan report for ip-10-10-210-75.eu-west-1.compute.internal (10.10.210.75)
+Host is up (0.00013s latency).
+MAC Address: 02:83:75:3A:F2:89 (Unknown)
+Nmap scan report for ip-10-10-210-100.eu-west-1.compute.internal (10.10.210.100)
+Host is up (-0.100s latency).
+MAC Address: 02:63:D0:1B:2D:CD (Unknown)
+Nmap scan report for ip-10-10-210-165.eu-west-1.compute.internal (10.10.210.165)
+Host is up (0.00025s latency).
+MAC Address: 02:59:79:4F:17:B7 (Unknown)
+Nmap scan report for ip-10-10-210-6.eu-west-1.compute.internal (10.10.210.6)
+Host is up.
+Nmap done: 256 IP addresses (4 hosts up) scanned in 3.12 seconds
+```
 
