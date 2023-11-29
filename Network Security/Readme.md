@@ -163,6 +163,15 @@ netcat as server :$ nc -lvnp 1337
 netcat as client :$ nc 192.168.0.176 1337
 ```
 ### Nmap
+```
+ARP Scan	        sudo nmap -PR -sn MACHINE_IP/24
+ICMP Echo Scan        	sudo nmap -PE -sn MACHINE_IP/24
+ICMP Timestamp Scan	sudo nmap -PP -sn MACHINE_IP/24
+ICMP Address Mask Scan	sudo nmap -PM -sn MACHINE_IP/24
+TCP SYN Ping Scan	sudo nmap -PS22,80,443 -sn MACHINE_IP/30
+TCP ACK Ping Scan	sudo nmap -PA22,80,443 -sn MACHINE_IP/30
+UDP Ping Scan	        sudo nmap -PU53,161,162 -sn MACHINE_IP/30
+```
 ![745e0412b319d324352c7b29863b74f4 (3)](https://github.com/fahimalshihab/TryHackMe/assets/97816146/a1cec004-2c12-4fa4-94d4-f71b5d95ee00)
 
 ``` nmap -sL -n 10.10.0-255.101-125 ```
@@ -219,5 +228,28 @@ sudo nmap -PP -sn 10.10.68.220/24
 sudo nmap -PM -sn 10.10.68.220/24
 ```
 
+#### TCP
+- TCP SYN Ping :  Nmap to use TCP SYN ping, you can do so via the option -PS followed by the port number, range, list, or a combination of them. For example, -PS21 will target port 21, while -PS21-25 will target ports 21, 22, 23, 24, and 25. Finally -PS80,443,8080 will target the three ports 80, 443, and 8080.
+```
+sudo nmap -PS -sn 10.10.68.220/24
+```
+- TCP ACK Ping :
+```
+sudo nmap -PA -sn 10.10.68.220/24
+```
+#### UDP 
 
+Finally, we can use UDP to discover if the host is online. Contrary to TCP SYN ping, sending a UDP packet to an open port is not expected to lead to any reply. However, if we send a UDP packet to a closed UDP port, we expect to get an ICMP port unreachable packet; this indicates that the target system is up and available.
+```
+sudo nmap -PU -sn 10.10.68.220/24
+```
 
+#### Masscan
+
+On a side note, Masscan uses a similar approach to discover the available systems. However, to finish its network scan quickly, Masscan is quite aggressive with the rate of packets it generates. The syntax is quite similar: -p can be followed by a port number, list, or range. Consider the following examples:
+```
+masscan MACHINE_IP/24 -p443
+masscan MACHINE_IP/24 -p80,443
+masscan MACHINE_IP/24 -p22-25
+masscan MACHINE_IP/24 ‐‐top-ports 100
+```
